@@ -89,7 +89,8 @@ namespace MotoDelivery.API
             builder.Services.AddSwaggerGen(c =>
             {
                 c.EnableAnnotations();
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Moto Delivery.API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Moto Delivery.API", Version = "v1", Description = "API para gerenciamento de locação de motos." });
+              
             });
 
             var app = builder.Build();

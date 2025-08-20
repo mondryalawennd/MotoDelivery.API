@@ -20,7 +20,7 @@ namespace MotoDelivery.Application.Entregador.UploadCNH
         public async Task<UploadCNHResult> Handle(UploadCNHCommand request, CancellationToken cancellationToken)
         {
             // Simples: salva em disco local
-            var pastaDestino = Path.Combine("C:\\", "CNHs");
+            var pastaDestino = Path.Combine("Storage", "CNHs");
             if (!Directory.Exists(pastaDestino))
                 Directory.CreateDirectory(pastaDestino);
 

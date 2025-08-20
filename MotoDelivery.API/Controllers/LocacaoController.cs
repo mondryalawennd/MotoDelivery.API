@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 using MotoDelivery.API.Features.Locacao.CreateLocacao;
 using MotoDelivery.API.Features.Locacao.GetDevolucaoLocacao;
 using MotoDelivery.API.Features.Locacao.GetLocacao;
-using MotoDelivery.API.Features.Motos.GetMoto;
 using MotoDelivery.Application.Locacao.CreateLocacao;
 using MotoDelivery.Application.Locacao.GetDevolucaoLocacao;
 using MotoDelivery.Application.Locacao.GetLocacao;
@@ -93,7 +92,7 @@ namespace MotoDelivery.API.Controllers
         }
 
 
-        [HttpPost("devolucao")]
+        [HttpPost("valor-devolucao")]
         [SwaggerOperation(Summary = "Informar data de devolução e calcular valor")]
         [ProducesResponseType(typeof(GetLocacaoResponse), 200)]
         [ProducesResponseType(404)]

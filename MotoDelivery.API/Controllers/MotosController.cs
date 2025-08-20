@@ -1,10 +1,6 @@
 ﻿using AutoMapper;
-using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using MotoDelivery.API.Features.Locacao.CreateLocacao;
-using MotoDelivery.API.Features.Locacao.GetLocacao;
-using MotoDelivery.API.Features.Motos;
 using MotoDelivery.API.Features.Motos.CreateMoto;
 using MotoDelivery.API.Features.Motos.DeletarMoto;
 using MotoDelivery.API.Features.Motos.GetMoto;
@@ -16,10 +12,7 @@ using MotoDelivery.Application.Moto.DeleteMotos;
 using MotoDelivery.Application.Moto.GetMoto;
 using MotoDelivery.Application.Moto.GetMotos;
 using MotoDelivery.Application.Moto.UpdateMoto;
-using MotoDelivery.Domain.Entities;
 using Swashbuckle.AspNetCore.Annotations;
-using System.Threading;
-using static MassTransit.ValidationResultExtensions;
 
 namespace MotoDelivery.API.Controllers
 {
