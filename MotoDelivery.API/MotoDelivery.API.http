@@ -1,0 +1,6 @@
+@MotoDelivery.API_HostAddress = http://localhost:5269
+
+GET {{MotoDelivery.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

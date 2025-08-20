@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="14.0.0" />
+    <PackageReference Include="FluentValidation" Version="12.0.0" />
+    <PackageReference Include="MassTransit" Version="8.5.2" />
+    <PackageReference Include="MediatR" Version="13.0.0" />
+    <PackageReference Include="xunit.extensibility.core" Version="2.9.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MotoDelivery.Domain\MotoDelivery.Domain.csproj" />
+    <ProjectReference Include="..\MotoDelivery.Infrastructure\MotoDelivery.Infrastructure.csproj" />
+    <ProjectReference Include="..\MotoDelivery.ORM\MotoDelivery.ORM.csproj" />
+  </ItemGroup>
+
+</Project>

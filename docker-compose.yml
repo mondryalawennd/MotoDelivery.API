@@ -1,0 +1,88 @@
+﻿services:
+  postgres:
+    image: postgres:15
+    container_name: moto-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin123
+      POSTGRES_DB: motoDeliveryDB
+    ports:
+      - "5433:5432"  # porta externa 5433, interna 5432
+    volumes:
+      - moto_postgres_data:/var/lib/postgresql/data
+    networks:
+      - motoDelivery-net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin"]
+      interval: 5s
+      retries: 10
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: moto-rabbitmq
+    restart: always
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin123
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - motoDelivery-net
+    healthcheck:
+      test: ["CMD-SHELL", "rabbitmqctl status"]
+      interval: 5s
+      retries: 10
+
+  mongo:
+    image: mongo:8.0
+    container_name: moto-mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: developer
+      MONGO_INITDB_ROOT_PASSWORD: ev@luAt10n
+    ports:
+      - "27017:27017"
+    networks:
+      - motoDelivery-net
+
+  redis:
+    image: redis:7.4.1-alpine
+    container_name: moto-redis
+    restart: always
+    command: redis-server --requirepass ev@luAt10n
+    ports:
+      - "6379:6379"
+    networks:
+      - motoDelivery-net
+
+  api:
+    build:
+      context: ./  
+      dockerfile: Dockerfile
+    container_name: moto-api
+    restart: always
+    environment:
+      ASPNETCORE_ENVIRONMENT: Docker
+      ConnectionStrings__DBConnection: "Host=moto-postgres;Port=5432;Database=motoDeliveryDB;Username=admin;Password=admin123"
+      RabbitMQ__Host: moto-rabbitmq
+      RabbitMQ__Username: admin
+      RabbitMQ__Password: admin123
+      RabbitMQ__InputQueue: motodelivery
+    depends_on:
+      postgres:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    ports:
+      - "5000:5000"
+    networks:
+      - motoDelivery-net
+
+volumes:
+  moto_postgres_data:
+
+networks:
+  motoDelivery-net:
+    driver: bridge
